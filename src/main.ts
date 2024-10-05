@@ -33,10 +33,10 @@ upgradeDisplay.innerHTML = `A: ${purchasedA}, B: ${purchasedB}, C: ${purchasedC}
 app.append(upgradeDisplay);
 
 const updateDisplay = () => {
-    counterDisplay.innerHTML = `Rocket Fuel: ${counter.toFixed(1)}`;
-    rateDisplay.innerHTML = `Growth Rate: ${growthRate.toFixed(1)} units/sec`;
-    upgradeDisplay.innerHTML = `A: ${purchasedA}, B: ${purchasedB}, C: ${purchasedC}`;
-  };
+  counterDisplay.innerHTML = `Rocket Fuel: ${counter.toFixed(1)}`;
+  rateDisplay.innerHTML = `Growth Rate: ${growthRate.toFixed(1)} units/sec`;
+  upgradeDisplay.innerHTML = `A: ${purchasedA}, B: ${purchasedB}, C: ${purchasedC}`;
+};
 
 // Create the increment button - Step 2
 const incrementButton = document.createElement("button");
@@ -94,16 +94,16 @@ setInterval(() => {
 }, 100);
 */
 
-// Step 6 
+// Step 6
 const upgradeAButton = document.createElement("button");
 upgradeAButton.innerHTML = "Purchase A (+0.1 units/sec) - Cost: 10 units";
 upgradeAButton.disabled = true; // Initially disabled until counter reaches 10
 upgradeAButton.addEventListener("click", () => {
   if (counter >= 10) {
-    counter -= 10; 
-    growthRate += 0.1; 
+    counter -= 10;
+    growthRate += 0.1;
     purchasedA++;
-    updateDisplay(); 
+    updateDisplay();
   }
 });
 app.append(upgradeAButton);
@@ -114,10 +114,10 @@ upgradeBButton.innerHTML = "Purchase B (+2.0 units/sec) - Cost: 100 units";
 upgradeBButton.disabled = true; // Initially disabled until counter reaches 100
 upgradeBButton.addEventListener("click", () => {
   if (counter >= 100) {
-    counter -= 100; 
+    counter -= 100;
     growthRate += 2.0;
     purchasedB++;
-    updateDisplay(); 
+    updateDisplay();
   }
 });
 app.append(upgradeBButton);
@@ -128,17 +128,16 @@ upgradeCButton.innerHTML = "Purchase C (+50 units/sec) - Cost: 1000 units";
 upgradeCButton.disabled = true; // Initially disabled until counter reaches 1000
 upgradeCButton.addEventListener("click", () => {
   if (counter >= 1000) {
-    counter -= 1000; 
-    growthRate += 50.0; 
-    purchasedC++; 
-    updateDisplay(); 
+    counter -= 1000;
+    growthRate += 50.0;
+    purchasedC++;
+    updateDisplay();
   }
 });
 app.append(upgradeCButton);
 
 setInterval(() => {
-    upgradeAButton.disabled = counter < 10;
-    upgradeBButton.disabled = counter < 100;
-    upgradeCButton.disabled = counter < 1000;
-  }, 100);
-  
+  upgradeAButton.disabled = counter < 10;
+  upgradeBButton.disabled = counter < 100;
+  upgradeCButton.disabled = counter < 1000;
+}, 100);
