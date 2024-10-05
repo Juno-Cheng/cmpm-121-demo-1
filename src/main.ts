@@ -24,3 +24,11 @@ incrementButton.addEventListener("click", () => {
 });
 app.append(incrementButton);
 
+// Create the decrement button
+const decrementButton = document.createElement("button");
+decrementButton.innerHTML = "Decrement";
+decrementButton.addEventListener("click", () => {
+  counter--;
+  counterDisplay.innerHTML = `Counter: ${counter}`;
+});
+app.append(decrementButton);
