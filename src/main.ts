@@ -26,8 +26,8 @@ app.append(incrementButton);
 
 //SetInterval
 const incrementCounter = () => {
-    counter++;
-    counterDisplay.innerHTML = `Rocket Fuel: ${counter}`;
-  };
-  
-  setInterval(incrementCounter, 1)
+  counter++;
+  counterDisplay.innerHTML = `Rocket Fuel: ${counter}`;
+};
+
+setInterval(incrementCounter, 1);
