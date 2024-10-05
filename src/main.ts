@@ -15,6 +15,10 @@ const counterDisplay = document.createElement("p");
 counterDisplay.innerHTML = `Rocket Fuel: ${counter}`;
 app.append(counterDisplay);
 
+//Step 5 - Variable
+let growthRate = 0;
+
+
 // Create the increment button - Step 2
 const incrementButton = document.createElement("button");
 incrementButton.innerHTML = "&#128640;";
@@ -43,7 +47,7 @@ function incrementCounterWithAnimationFrame(timestamp: number) {
   const deltaTime = timestamp - lastTimestamp;
   lastTimestamp = timestamp;
 
-  counter +=  deltaTime / 1000;
+  counter += (growthRate * deltaTime) / 1000;
   counterDisplay.innerHTML = `Rocket Fuel: ${counter}`;
 
   requestAnimationFrame(incrementCounterWithAnimationFrame);
@@ -51,4 +55,21 @@ function incrementCounterWithAnimationFrame(timestamp: number) {
 
 // Start the animation frame loop
 requestAnimationFrame(incrementCounterWithAnimationFrame);
- 
+
+//Upgrade Button - Step 5
+const upgradeButton = document.createElement("button");
+upgradeButton.innerHTML = "Purchase Upgrade (+1 Growth Rate)";
+upgradeButton.disabled = true; // Initially disabled until counter reaches 10
+upgradeButton.addEventListener("click", () => {
+  if (counter >= 10) {
+    counter -= 10; 
+    growthRate++; 
+    counterDisplay.innerHTML = `Rocket Fuel: ${counter}`; // Update counter display after purchase
+  }
+});
+app.append(upgradeButton);
+
+// Enable the upgrade button when the player has at least 10 units
+setInterval(() => {
+  upgradeButton.disabled = counter < 10;
+}, 100);
