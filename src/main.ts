@@ -19,7 +19,15 @@ app.append(counterDisplay);
 const incrementButton = document.createElement("button");
 incrementButton.innerHTML = "&#128640;";
 incrementButton.addEventListener("click", () => {
+  counter++;
+  counterDisplay.innerHTML = `Rocket Fuel: ${counter}`;
+});
+app.append(incrementButton);
+
+//SetInterval
+const incrementCounter = () => {
     counter++;
     counterDisplay.innerHTML = `Rocket Fuel: ${counter}`;
-  });
-app.append(incrementButton);
+  };
+  
+  setInterval(incrementCounter, 1)
