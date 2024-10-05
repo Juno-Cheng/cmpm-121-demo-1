@@ -15,14 +15,23 @@ const counterDisplay = document.createElement("p");
 counterDisplay.innerHTML = `Rocket Fuel: ${counter}`;
 app.append(counterDisplay);
 
-//Step 5 & 6 - Variable
+// Step 5 & 6 - Variable
 let growthRate = 0;
 
-//Step 6 -  Set the default counter growth rate to zero
+// Step 6 -  Set the default counter growth rate to zero
 // Track purchases for each upgrade
 let purchasedA = 0;
 let purchasedB = 0;
 let purchasedC = 0;
+
+// Step 7 
+const basePriceA = 10;
+const basePriceB = 100;
+const basePriceC = 1000;
+
+let currentPriceA = basePriceA;
+let currentPriceB = basePriceB;
+let currentPriceC = basePriceC;
 
 const rateDisplay = document.createElement("p");
 rateDisplay.innerHTML = `Growth Rate: ${growthRate.toFixed(1)} units/sec`;
@@ -94,44 +103,48 @@ setInterval(() => {
 }, 100);
 */
 
-// Step 6
+// Step 6 & 7
 const upgradeAButton = document.createElement("button");
-upgradeAButton.innerHTML = "Purchase A (+0.1 units/sec) - Cost: 10 units";
+upgradeAButton.innerHTML = `Purchase A (+0.1 units/sec) - Cost: ${currentPriceA.toFixed(1)} units`;
 upgradeAButton.disabled = true; // Initially disabled until counter reaches 10
 upgradeAButton.addEventListener("click", () => {
-  if (counter >= 10) {
-    counter -= 10;
-    growthRate += 0.1;
-    purchasedA++;
+  if (counter >= currentPriceA) {
+    counter -= currentPriceA;
+    growthRate += 0.1; 
+    purchasedA++; 
+    currentPriceA *= 1.15; // Increase price for next purchase - Step 7
+    upgradeAButton.innerHTML = `Purchase A (+0.1 units/sec) - Cost: ${currentPriceA.toFixed(1)} units`; 
     updateDisplay();
   }
 });
 app.append(upgradeAButton);
 
-// Create Upgrade B button
 const upgradeBButton = document.createElement("button");
-upgradeBButton.innerHTML = "Purchase B (+2.0 units/sec) - Cost: 100 units";
+upgradeBButton.innerHTML = `Purchase B (+2.0 units/sec) - Cost: ${currentPriceB.toFixed(1)} units`;
 upgradeBButton.disabled = true; // Initially disabled until counter reaches 100
 upgradeBButton.addEventListener("click", () => {
-  if (counter >= 100) {
-    counter -= 100;
-    growthRate += 2.0;
-    purchasedB++;
-    updateDisplay();
+  if (counter >= currentPriceB) {
+    counter -= currentPriceB; 
+    growthRate += 2.0; 
+    purchasedB++; 
+    currentPriceB *= 1.15; // Increase price for next purchase - Step 7
+    upgradeBButton.innerHTML = `Purchase B (+2.0 units/sec) - Cost: ${currentPriceB.toFixed(1)} units`;
+    updateDisplay(); 
   }
 });
 app.append(upgradeBButton);
 
-// Create Upgrade C button
 const upgradeCButton = document.createElement("button");
-upgradeCButton.innerHTML = "Purchase C (+50 units/sec) - Cost: 1000 units";
+upgradeCButton.innerHTML = `Purchase C (+50 units/sec) - Cost: ${currentPriceC.toFixed(1)} units`;
 upgradeCButton.disabled = true; // Initially disabled until counter reaches 1000
 upgradeCButton.addEventListener("click", () => {
-  if (counter >= 1000) {
-    counter -= 1000;
-    growthRate += 50.0;
-    purchasedC++;
-    updateDisplay();
+  if (counter >= currentPriceC) {
+    counter -= currentPriceC; 
+    growthRate += 50.0; 
+    purchasedC++; 
+    currentPriceC *= 1.15; // Increase price for next purchase - Step 7
+    upgradeCButton.innerHTML = `Purchase C (+50 units/sec) - Cost: ${currentPriceC.toFixed(1)} units`; 
+    updateDisplay(); 
   }
 });
 app.append(upgradeCButton);
