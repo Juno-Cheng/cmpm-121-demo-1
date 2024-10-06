@@ -35,18 +35,20 @@ let currentPriceB = basePriceB;
 let currentPriceC = basePriceC;
 */
 
-// Step 9
-
+// Step 9 & 10
 interface Item {
-    name: string;
-    cost: number;
-    rate: number;
-  }
-  
-  const availableItems: Item[] = [
-    { name: "Engineer", cost: 10, rate: 0.1 },
-    { name: "Launch Pad", cost: 100, rate: 2 },
-    { name: "Factory", cost: 1000, rate: 50 },
+  name: string;
+  cost: number;
+  rate: number;
+  description: string;  // Added description field - Step 10
+}
+
+const availableItems: Item[] = [
+    { name: "Engineer", cost: 10, rate: 0.1, description: "A skilled engineer who helps optimize rocket fuel production." },
+    { name: "Launch Pad", cost: 100, rate: 2, description: "A launch pad that makes launching rockets more efficient, boosting fuel output." },
+    { name: "Factory", cost: 1000, rate: 50, description: "An automated factory that produces rocket fuel at high rates." },
+    { name: "Rocket Scientist", cost: 5000, rate: 100, description: "A brilliant rocket scientist who devises new ways to generate fuel faster." },  // New item added - Step 10
+    { name: "Space Station", cost: 20000, rate: 500, description: "An advanced space station dedicated to researching and maximizing fuel efficiency." }  // New item added - Step 10
   ];
   
 
@@ -62,8 +64,8 @@ const updateDisplay = () => {
   counterDisplay.innerHTML = `Rocket Fuel: ${counter.toFixed(1)}`;
   rateDisplay.innerHTML = `Growth Rate: ${growthRate.toFixed(1)} Rocket Fuel/sec`;
   const purchasedText = availableItems
-  .map((item, index) => `${item.name}: ${purchasedItems[index]}`)
-  .join(", ");
+    .map((item, index) => `${item.name}: ${purchasedItems[index]}`)
+    .join(", ");
   upgradeDisplay.innerHTML = `Purchased - ${purchasedText}`;
 };
 
@@ -185,7 +187,7 @@ availableItems.forEach((item, index) => {
       growthRate += item.rate; // Increase growth rate
       purchasedItems[index]++; // Increment purchase count
       item.cost *= 1.15; // Increase price for next purchase
-      button.innerHTML = `Purchase ${item.name} (+${item.rate} Rocket Fuel/sec) - Cost: ${item.cost.toFixed(1)} units`; // Update button text
+      button.innerHTML = `Purchase ${item.name} (+${item.rate} Rocket Fuel/sec) - Cost: ${item.cost.toFixed(1)} units<br>${item.description}`; // Update button text - Step 9 & 10
       updateDisplay(); // Update all displays
     }
   });
@@ -193,7 +195,6 @@ availableItems.forEach((item, index) => {
   app.append(button);
   upgradeButtons.push(button); // Store the reference to enable/disable later
 });
-
 
 /*setInterval(() => {
   upgradeAButton.disabled = counter < 10;
@@ -203,11 +204,9 @@ availableItems.forEach((item, index) => {
 
 // Step 9
 setInterval(() => {
-    upgradeButtons.forEach((button, index) => {
-      button.disabled = counter < availableItems[index].cost;
-    });
-  }, 100);
-  
+  upgradeButtons.forEach((button, index) => {
+    button.disabled = counter < availableItems[index].cost;
+  });
+}, 100);
 
 const purchasedItems: number[] = new Array(availableItems.length).fill(0);
-
