@@ -18,6 +18,7 @@ app.append(counterDisplay);
 // Step 5 & 6 - Variable
 let growthRate = 0;
 
+/* Replaced
 // Step 6 -  Set the default counter growth rate to zero
 // Track purchases for each upgrade
 let purchasedA = 0;
@@ -32,6 +33,22 @@ const basePriceC = 1000;
 let currentPriceA = basePriceA;
 let currentPriceB = basePriceB;
 let currentPriceC = basePriceC;
+*/
+
+// Step 9
+
+interface Item {
+    name: string;
+    cost: number;
+    rate: number;
+  }
+  
+  const availableItems: Item[] = [
+    { name: "Engineer", cost: 10, rate: 0.1 },
+    { name: "Launch Pad", cost: 100, rate: 2 },
+    { name: "Factory", cost: 1000, rate: 50 },
+  ];
+  
 
 const rateDisplay = document.createElement("p");
 rateDisplay.innerHTML = `Growth Rate: ${growthRate.toFixed(1)} Rocket Fuel/sec`;
@@ -44,7 +61,10 @@ app.append(upgradeDisplay);
 const updateDisplay = () => {
   counterDisplay.innerHTML = `Rocket Fuel: ${counter.toFixed(1)}`;
   rateDisplay.innerHTML = `Growth Rate: ${growthRate.toFixed(1)} Rocket Fuel/sec`;
-  upgradeDisplay.innerHTML = `Engineers: ${purchasedA}, Launch Pads: ${purchasedB}, Factories: ${purchasedC}`;
+  const purchasedText = availableItems
+  .map((item, index) => `${item.name}: ${purchasedItems[index]}`)
+  .join(", ");
+  upgradeDisplay.innerHTML = `Purchased - ${purchasedText}`;
 };
 
 // Create the increment button - Step 2
@@ -106,6 +126,7 @@ setInterval(() => {
 */
 
 // Step 6 & 7
+/*
 const upgradeAButton = document.createElement("button");
 upgradeAButton.innerHTML = `Hire Engineer (+0.1 units/sec) - Cost: ${currentPriceA.toFixed(1)} units`;
 upgradeAButton.disabled = true; // Initially disabled until counter reaches 10
@@ -150,9 +171,43 @@ upgradeCButton.addEventListener("click", () => {
   }
 });
 app.append(upgradeCButton);
+*/
+const upgradeButtons: HTMLButtonElement[] = [];
 
-setInterval(() => {
+availableItems.forEach((item, index) => {
+  const button = document.createElement("button");
+  button.innerHTML = `Purchase ${item.name} (+${item.rate} Rocket Fuel/sec) - Cost: ${item.cost.toFixed(1)} units`;
+  button.disabled = true; // Initially disabled until counter reaches the item's cost
+
+  button.addEventListener("click", () => {
+    if (counter >= item.cost) {
+      counter -= item.cost; // Deduct the current cost
+      growthRate += item.rate; // Increase growth rate
+      purchasedItems[index]++; // Increment purchase count
+      item.cost *= 1.15; // Increase price for next purchase
+      button.innerHTML = `Purchase ${item.name} (+${item.rate} Rocket Fuel/sec) - Cost: ${item.cost.toFixed(1)} units`; // Update button text
+      updateDisplay(); // Update all displays
+    }
+  });
+
+  app.append(button);
+  upgradeButtons.push(button); // Store the reference to enable/disable later
+});
+
+
+/*setInterval(() => {
   upgradeAButton.disabled = counter < 10;
   upgradeBButton.disabled = counter < 100;
   upgradeCButton.disabled = counter < 1000;
-}, 100);
+}, 100);*/
+
+// Step 9
+setInterval(() => {
+    upgradeButtons.forEach((button, index) => {
+      button.disabled = counter < availableItems[index].cost;
+    });
+  }, 100);
+  
+
+const purchasedItems: number[] = new Array(availableItems.length).fill(0);
+
