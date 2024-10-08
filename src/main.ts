@@ -40,17 +40,46 @@ interface Item {
   name: string;
   cost: number;
   rate: number;
-  description: string;  // Added description field - Step 10
+  description: string; // Added description field - Step 10
 }
 
 const availableItems: Item[] = [
-    { name: "Engineer", cost: 10, rate: 0.1, description: "A skilled engineer who helps optimize rocket fuel production." },
-    { name: "Launch Pad", cost: 100, rate: 2, description: "A launch pad that makes launching rockets more efficient, boosting fuel output." },
-    { name: "Factory", cost: 1000, rate: 50, description: "An automated factory that produces rocket fuel at high rates." },
-    { name: "Rocket Scientist", cost: 5000, rate: 100, description: "A brilliant rocket scientist who devises new ways to generate fuel faster." },  // New item added - Step 10
-    { name: "Space Station", cost: 20000, rate: 500, description: "An advanced space station dedicated to researching and maximizing fuel efficiency." }  // New item added - Step 10
-  ];
-  
+  {
+    name: "Engineer",
+    cost: 10,
+    rate: 0.1,
+    description:
+      "A skilled engineer who helps optimize rocket fuel production.",
+  },
+  {
+    name: "Launch Pad",
+    cost: 100,
+    rate: 2,
+    description:
+      "A launch pad that makes launching rockets more efficient, boosting fuel output.",
+  },
+  {
+    name: "Factory",
+    cost: 1000,
+    rate: 50,
+    description:
+      "An automated factory that produces rocket fuel at high rates.",
+  },
+  {
+    name: "Rocket Scientist",
+    cost: 5000,
+    rate: 100,
+    description:
+      "A brilliant rocket scientist who devises new ways to generate fuel faster.",
+  }, // New item added - Step 10
+  {
+    name: "Space Station",
+    cost: 20000,
+    rate: 500,
+    description:
+      "An advanced space station dedicated to researching and maximizing fuel efficiency.",
+  }, // New item added - Step 10
+];
 
 const rateDisplay = document.createElement("p");
 rateDisplay.innerHTML = `Growth Rate: ${growthRate.toFixed(1)} Rocket Fuel/sec`;
