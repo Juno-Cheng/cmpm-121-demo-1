@@ -134,7 +134,6 @@ availableItems.forEach((item, index) => {
   upgradeButtons.push(button); // Store the reference to enable/disable later
 });
 
-
 // Step 9
 setInterval(() => {
   upgradeButtons.forEach((button, index) => {
