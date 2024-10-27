@@ -95,7 +95,7 @@ app.append(incrementButton);
 //Continuous Growth - Step 4
 let lastTimestamp = 0;
 
-function incrementCounterWithAnimationFrame(timestamp: number) {
+function incrementCounter(timestamp: number) {
   if (lastTimestamp === 0) {
     lastTimestamp = timestamp;
   }
@@ -106,11 +106,11 @@ function incrementCounterWithAnimationFrame(timestamp: number) {
   counter += (growthRate * deltaTime) / 1000;
   updateDisplay();
 
-  requestAnimationFrame(incrementCounterWithAnimationFrame);
+  requestAnimationFrame(incrementCounter);
 }
 
 // Start the animation frame loop
-requestAnimationFrame(incrementCounterWithAnimationFrame);
+requestAnimationFrame(incrementCounter);
 
 const upgradeButtons: HTMLButtonElement[] = [];
 
