@@ -18,23 +18,6 @@ app.append(counterDisplay);
 // Step 5 & 6 - Variable
 let growthRate = 0;
 
-/* Replaced
-// Step 6 -  Set the default counter growth rate to zero
-// Track purchases for each upgrade
-let purchasedA = 0;
-let purchasedB = 0;
-let purchasedC = 0;
-
-// Step 7
-const basePriceA = 10;
-const basePriceB = 100;
-const basePriceC = 1000;
-
-let currentPriceA = basePriceA;
-let currentPriceB = basePriceB;
-let currentPriceC = basePriceC;
-*/
-
 // Step 9 & 10
 interface Item {
   name: string;
@@ -109,14 +92,6 @@ incrementButton.addEventListener("click", () => {
 });
 app.append(incrementButton);
 
-/*SetInterval - Step 3
-const incrementCounter = () => {
-  counter++;
-  counterDisplay.innerHTML = `Rocket Fuel: ${counter}`;
-};
-
-setInterval(incrementCounter, 1);*/
-
 //Continuous Growth - Step 4
 let lastTimestamp = 0;
 
@@ -137,72 +112,6 @@ function incrementCounterWithAnimationFrame(timestamp: number) {
 // Start the animation frame loop
 requestAnimationFrame(incrementCounterWithAnimationFrame);
 
-/*Upgrade Button - Step 5
-const upgradeButton = document.createElement("button");
-upgradeButton.innerHTML = "Purchase Upgrade (+1 Growth Rate)";
-upgradeButton.disabled = true; // Initially disabled until counter reaches 10
-upgradeButton.addEventListener("click", () => {
-  if (counter >= 10) {
-    counter -= 10;
-    growthRate++;
-    counterDisplay.innerHTML = `Rocket Fuel: ${counter}`; // Update counter display after purchase
-  }
-});
-app.append(upgradeButton);
-
-// Enable the upgrade button when the player has at least 10 units
-setInterval(() => {
-  upgradeButton.disabled = counter < 10;
-}, 100);
-*/
-
-// Step 6 & 7
-/*
-const upgradeAButton = document.createElement("button");
-upgradeAButton.innerHTML = `Hire Engineer (+0.1 units/sec) - Cost: ${currentPriceA.toFixed(1)} units`;
-upgradeAButton.disabled = true; // Initially disabled until counter reaches 10
-upgradeAButton.addEventListener("click", () => {
-  if (counter >= currentPriceA) {
-    counter -= currentPriceA;
-    growthRate += 0.1;
-    purchasedA++;
-    currentPriceA *= 1.15; // Increase price for next purchase - Step 7
-    upgradeAButton.innerHTML = `Hire Engineer (+0.1 units/sec) - Cost: ${currentPriceA.toFixed(1)} units`;
-    updateDisplay();
-  }
-});
-app.append(upgradeAButton);
-
-const upgradeBButton = document.createElement("button");
-upgradeBButton.innerHTML = `Build Launch Pad (+2.0 units/sec) - Cost: ${currentPriceB.toFixed(1)} units`;
-upgradeBButton.disabled = true; // Initially disabled until counter reaches 100
-upgradeBButton.addEventListener("click", () => {
-  if (counter >= currentPriceB) {
-    counter -= currentPriceB;
-    growthRate += 2.0;
-    purchasedB++;
-    currentPriceB *= 1.15; // Increase price for next purchase - Step 7
-    upgradeBButton.innerHTML = `Build Launch Pad (+2.0 units/sec) - Cost: ${currentPriceB.toFixed(1)} units`;
-    updateDisplay();
-  }
-});
-app.append(upgradeBButton);
-
-const upgradeCButton = document.createElement("button");
-upgradeCButton.innerHTML = `Build Factory (+50 units/sec) - Cost: ${currentPriceC.toFixed(1)} units`;
-upgradeCButton.disabled = true; // Initially disabled until counter reaches 1000
-upgradeCButton.addEventListener("click", () => {
-  if (counter >= currentPriceC) {
-    counter -= currentPriceC;
-    growthRate += 50.0;
-    purchasedC++;
-    currentPriceC *= 1.15; // Increase price for next purchase - Step 7
-    upgradeCButton.innerHTML = `Build Factory (+50 units/sec) - Cost: ${currentPriceC.toFixed(1)} units`;
-    updateDisplay();
-  }
-});
-app.append(upgradeCButton);
-*/
 const upgradeButtons: HTMLButtonElement[] = [];
 
 availableItems.forEach((item, index) => {
@@ -225,11 +134,6 @@ availableItems.forEach((item, index) => {
   upgradeButtons.push(button); // Store the reference to enable/disable later
 });
 
-/*setInterval(() => {
-  upgradeAButton.disabled = counter < 10;
-  upgradeBButton.disabled = counter < 100;
-  upgradeCButton.disabled = counter < 1000;
-}, 100);*/
 
 // Step 9
 setInterval(() => {
