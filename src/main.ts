@@ -2,18 +2,29 @@ import "./style.css";
 
 const app: HTMLDivElement = document.querySelector("#app")!;
 
+// Create a container for the main game area
+const mainContainer = document.createElement("div");
+mainContainer.id = "main-container";
+app.append(mainContainer);
+
+// Create a sidebar container for the buttons
+const sidebar = document.createElement("div");
+sidebar.id = "sidebar";
+app.append(sidebar);
+
 const gameName = "Rocket Fuel Clicker"; // Step 8 - Theme
 document.title = gameName;
 
+// Header in main container
 const header = document.createElement("h1");
 header.innerHTML = gameName;
-app.append(header);
+mainContainer.append(header);
 
 // Create a counter display - Step 1
 let counter = 0;
 const counterDisplay = document.createElement("p");
 counterDisplay.innerHTML = `Rocket Fuel: ${counter}`;
-app.append(counterDisplay);
+mainContainer.append(counterDisplay);
 
 // Step 5 & 6 - Variable
 let growthRate = 0;
@@ -31,8 +42,7 @@ const availableItems: Item[] = [
     name: "Engineer",
     cost: 10,
     rate: 0.1,
-    description:
-      "A skilled engineer who helps optimize rocket fuel production.",
+    description: "A skilled engineer who helps optimize rocket fuel production.",
   },
   {
     name: "Launch Pad",
@@ -45,8 +55,7 @@ const availableItems: Item[] = [
     name: "Factory",
     cost: 1000,
     rate: 50,
-    description:
-      "An automated factory that produces rocket fuel at high rates.",
+    description: "An automated factory that produces rocket fuel at high rates.",
   },
   {
     name: "Rocket Scientist",
@@ -54,23 +63,23 @@ const availableItems: Item[] = [
     rate: 100,
     description:
       "A brilliant rocket scientist who devises new ways to generate fuel faster.",
-  }, // New item added - Step 10
+  },
   {
     name: "Space Station",
     cost: 20000,
     rate: 500,
     description:
       "An advanced space station dedicated to researching and maximizing fuel efficiency.",
-  }, // New item added - Step 10
+  },
 ];
 
 const rateDisplay = document.createElement("p");
 rateDisplay.innerHTML = `Growth Rate: ${growthRate.toFixed(1)} Rocket Fuel/sec`;
-app.append(rateDisplay);
+mainContainer.append(rateDisplay);
 
 const upgradeDisplay = document.createElement("p");
 upgradeDisplay.innerHTML = `Engineers: 0, Launch Pads: 0, Factories: 0`;
-app.append(upgradeDisplay);
+mainContainer.append(upgradeDisplay);
 
 const updateDisplay = () => {
   counterDisplay.innerHTML = `Rocket Fuel: ${counter.toFixed(1)}`;
@@ -88,11 +97,11 @@ incrementButton.style.fontSize = "24px";
 incrementButton.style.padding = "20px";
 incrementButton.addEventListener("click", () => {
   counter++;
-  counterDisplay.innerHTML = `Rocket Fuel: ${counter}`;
+  updateDisplay();
 });
-app.append(incrementButton);
+mainContainer.append(incrementButton);
 
-//Continuous Growth - Step 4
+// Continuous Growth - Step 4
 let lastTimestamp = 0;
 
 function incrementCounter(timestamp: number) {
@@ -125,12 +134,12 @@ availableItems.forEach((item, index) => {
       growthRate += item.rate; // Increase growth rate
       purchasedItems[index]++; // Increment purchase count
       item.cost *= 1.15; // Increase price for next purchase
-      button.innerHTML = `Purchase ${item.name} (+${item.rate} Rocket Fuel/sec) - Cost: ${item.cost.toFixed(1)} units<br>${item.description}`; // Update button text - Step 9 & 10
+      button.innerHTML = `Purchase ${item.name} (+${item.rate} Rocket Fuel/sec) - Cost: ${item.cost.toFixed(1)} units<br>${item.description}`; // Update button text
       updateDisplay(); // Update all displays
     }
   });
 
-  app.append(button);
+  sidebar.append(button); // Add button to sidebar
   upgradeButtons.push(button); // Store the reference to enable/disable later
 });
 
@@ -142,3 +151,8 @@ setInterval(() => {
 }, 100);
 
 const purchasedItems: number[] = new Array(availableItems.length).fill(0);
+
+// Rocket animation
+const rocket = document.createElement("div");
+rocket.classList.add("rocket");
+app.append(rocket);
