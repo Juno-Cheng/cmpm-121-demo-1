@@ -42,7 +42,8 @@ const availableItems: Item[] = [
     name: "Engineer",
     cost: 10,
     rate: 0.1,
-    description: "A skilled engineer who helps optimize rocket fuel production.",
+    description:
+      "A skilled engineer who helps optimize rocket fuel production.",
   },
   {
     name: "Launch Pad",
@@ -55,7 +56,8 @@ const availableItems: Item[] = [
     name: "Factory",
     cost: 1000,
     rate: 50,
-    description: "An automated factory that produces rocket fuel at high rates.",
+    description:
+      "An automated factory that produces rocket fuel at high rates.",
   },
   {
     name: "Rocket Scientist",

@@ -21,7 +21,12 @@ body {
   min-width: 320px;
   min-height: 100vh;
   overflow: hidden;
-  background: linear-gradient(to bottom, #001f3f, #0074d9, #001f3f); /* Space-themed gradient */
+  background: linear-gradient(
+    to bottom,
+    #001f3f,
+    #0074d9,
+    #001f3f
+  ); /* Space-themed gradient */
   position: relative;
   color: rgba(255, 255, 255, 0.87); /* Text color in dark mode */
 }
@@ -65,7 +70,9 @@ button {
   background-color: #1a1a1a;
   color: white;
   cursor: pointer;
-  transition: border-color 0.25s, transform 0.2s;
+  transition:
+    border-color 0.25s,
+    transform 0.2s;
   width: 180px; /* Button width adjusted to fit sidebar */
 }
 button:hover {
@@ -97,7 +104,7 @@ button:focus-visible {
   position: absolute;
   width: 100px;
   height: 100px;
-  background: url('https://example.com/rocket.png') no-repeat center center; /* Replace with a real rocket image URL */
+  background: url("https://example.com/rocket.png") no-repeat center center; /* Replace with a real rocket image URL */
   background-size: contain;
   animation: rocketFly 10s linear infinite;
 }
@@ -108,7 +115,12 @@ button:focus-visible {
     background-color: #ffffff;
   }
   body {
-    background: linear-gradient(to bottom, #87CEEB, #ffffff, #87CEEB); /* Light-themed gradient */
+    background: linear-gradient(
+      to bottom,
+      #87ceeb,
+      #ffffff,
+      #87ceeb
+    ); /* Light-themed gradient */
     color: #213547;
   }
   button {
