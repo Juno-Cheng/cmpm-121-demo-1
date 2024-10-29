@@ -7,20 +7,18 @@ const mainContainer = document.createElement("div");
 mainContainer.id = "main-container";
 app.append(mainContainer);
 
-// Create a sidebar container for the buttons
+// Create a sidebar container for the buttons and stats
 const sidebar = document.createElement("div");
 sidebar.id = "sidebar";
 app.append(sidebar);
 
-const gameName = "Rocket Fuel Clicker"; // Step 8 - Theme
-document.title = gameName;
-
-// Header in main container
+// Header in top-left corner
 const header = document.createElement("h1");
-header.innerHTML = gameName;
-mainContainer.append(header);
+header.id = "game-title";
+header.innerHTML = "Rocket Fuel Clicker";
+app.append(header);
 
-// Create a counter display - Step 1
+// Create a counter display
 let counter = 0;
 const counterDisplay = document.createElement("p");
 counterDisplay.innerHTML = `Rocket Fuel: ${counter}`;
@@ -42,8 +40,7 @@ const availableItems: Item[] = [
     name: "Engineer",
     cost: 10,
     rate: 0.1,
-    description:
-      "A skilled engineer who helps optimize rocket fuel production.",
+    description: "A skilled engineer who helps optimize rocket fuel production.",
   },
   {
     name: "Launch Pad",
@@ -56,8 +53,7 @@ const availableItems: Item[] = [
     name: "Factory",
     cost: 1000,
     rate: 50,
-    description:
-      "An automated factory that produces rocket fuel at high rates.",
+    description: "An automated factory that produces rocket fuel at high rates.",
   },
   {
     name: "Rocket Scientist",
@@ -77,11 +73,9 @@ const availableItems: Item[] = [
 
 const rateDisplay = document.createElement("p");
 rateDisplay.innerHTML = `Growth Rate: ${growthRate.toFixed(1)} Rocket Fuel/sec`;
-mainContainer.append(rateDisplay);
 
 const upgradeDisplay = document.createElement("p");
 upgradeDisplay.innerHTML = `Engineers: 0, Launch Pads: 0, Factories: 0`;
-mainContainer.append(upgradeDisplay);
 
 const updateDisplay = () => {
   counterDisplay.innerHTML = `Rocket Fuel: ${counter.toFixed(1)}`;
@@ -92,18 +86,18 @@ const updateDisplay = () => {
   upgradeDisplay.innerHTML = `Purchased - ${purchasedText}`;
 };
 
-// Create the increment button - Step 2
+// Create the main increment button
 const incrementButton = document.createElement("button");
 incrementButton.innerHTML = "&#128640; Click to Generate Rocket Fuel";
-incrementButton.style.fontSize = "24px";
-incrementButton.style.padding = "20px";
+incrementButton.style.fontSize = "20px";
+incrementButton.style.padding = "15px";
 incrementButton.addEventListener("click", () => {
   counter++;
   updateDisplay();
 });
-mainContainer.append(incrementButton);
+sidebar.append(incrementButton); // Move main button to sidebar
 
-// Continuous Growth - Step 4
+// Continuous Growth
 let lastTimestamp = 0;
 
 function incrementCounter(timestamp: number) {
@@ -158,3 +152,9 @@ const purchasedItems: number[] = new Array(availableItems.length).fill(0);
 const rocket = document.createElement("div");
 rocket.classList.add("rocket");
 app.append(rocket);
+
+// Append stats to the bottom of the sidebar
+const statsContainer = document.createElement("div");
+statsContainer.id = "stats-container";
+statsContainer.append(rateDisplay, upgradeDisplay);
+sidebar.append(statsContainer);

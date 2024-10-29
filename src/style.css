@@ -1,37 +1,31 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
 body {
   margin: 0;
   display: flex;
-  flex-direction: row;
   min-width: 320px;
   min-height: 100vh;
   overflow: hidden;
-  background: linear-gradient(
-    to bottom,
-    #001f3f,
-    #0074d9,
-    #001f3f
-  ); /* Space-themed gradient */
+  background: linear-gradient(to bottom, #001f3f, #0074d9, #001f3f); /* Space-themed gradient */
   position: relative;
   color: rgba(255, 255, 255, 0.87); /* Text color in dark mode */
 }
 
-/* Sidebar for buttons */
+#game-title {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 1.5em;
+  margin: 0;
+}
+
+#main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
 #sidebar {
   width: 200px;
   background-color: rgba(0, 0, 0, 0.8);
@@ -47,20 +41,16 @@ body {
   overflow-y: auto;
 }
 
-h1 {
-  font-size: 2em;
-  margin-bottom: 1rem;
-}
-
-#app {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+#stats-container {
+  margin-top: auto; /* Pushes stats to the bottom of the sidebar */
+  padding-top: 1rem;
+  border-top: 1px solid #444;
+  width: 100%;
+  text-align: center;
 }
 
 button {
+  width: 180px; /* Button width adjusted to fit sidebar */
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -70,21 +60,22 @@ button {
   background-color: #1a1a1a;
   color: white;
   cursor: pointer;
-  transition:
-    border-color 0.25s,
-    transform 0.2s;
-  width: 180px; /* Button width adjusted to fit sidebar */
+  transition: border-color 0.25s, transform 0.2s;
 }
 button:hover {
   border-color: #646cff;
   transform: scale(1.05);
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+.rocket {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: url('https://example.com/rocket.png') no-repeat center center; /* Replace with actual rocket image URL */
+  background-size: contain;
+  animation: rocketFly 10s linear infinite;
 }
 
-/* Rocket animation */
 @keyframes rocketFly {
   0% {
     left: -10%;
@@ -97,34 +88,5 @@ button:focus-visible {
   100% {
     left: -10%;
     top: 50%;
-  }
-}
-
-.rocket {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  background: url("https://example.com/rocket.png") no-repeat center center; /* Replace with a real rocket image URL */
-  background-size: contain;
-  animation: rocketFly 10s linear infinite;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  body {
-    background: linear-gradient(
-      to bottom,
-      #87ceeb,
-      #ffffff,
-      #87ceeb
-    ); /* Light-themed gradient */
-    color: #213547;
-  }
-  button {
-    background-color: #f9f9f9;
-    color: #213547;
   }
 }
