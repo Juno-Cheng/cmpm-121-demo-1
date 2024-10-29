@@ -73,32 +73,18 @@ button:hover {
 
 .rocket {
   position: absolute;
-  left: 10%;
+  left: calc(50% - 100px); /* Centers the rocket considering its size */
   top: 50%;
-  font-size: 3em;
+  font-size: 8em; /* Increased size for better visibility */
+  transform: translate(-50%, -50%);
   animation: rocketBounce 2s infinite;
 }
 
 @keyframes rocketBounce {
   0%, 100% {
-    transform: translateY(-10px);
+    transform: translate(-50%, -60%);
   }
   50% {
-    transform: translateY(10px);
-  }
-}
-
-@keyframes rocketFly {
-  0% {
-    left: -10%;
-    top: 50%;
-  }
-  50% {
-    left: 110%;
-    top: 20%;
-  }
-  100% {
-    left: -10%;
-    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }

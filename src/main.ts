@@ -149,7 +149,7 @@ setInterval(() => {
 
 const purchasedItems: number[] = new Array(availableItems.length).fill(0);
 
-// Rocket animation
+// Large, centered rocket emoji animation
 const rocket = document.createElement("div");
 rocket.classList.add("rocket");
 rocket.innerHTML = "🚀";
