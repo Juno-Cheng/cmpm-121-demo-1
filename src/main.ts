@@ -1,5 +1,6 @@
 import "./style.css";
 
+// Create main app container
 const app: HTMLDivElement = document.querySelector("#app")!;
 
 // Create a container for the main game area
@@ -15,7 +16,7 @@ app.append(sidebar);
 // Header in top-left corner
 const header = document.createElement("h1");
 header.id = "game-title";
-header.innerHTML = "Rocket Fuel Clicker";
+header.innerHTML = "🚀 Rocket Fuel Clicker";
 app.append(header);
 
 // Create a counter display
@@ -151,6 +152,7 @@ const purchasedItems: number[] = new Array(availableItems.length).fill(0);
 // Rocket animation
 const rocket = document.createElement("div");
 rocket.classList.add("rocket");
+rocket.innerHTML = "🚀";
 app.append(rocket);
 
 // Append stats to the bottom of the sidebar
